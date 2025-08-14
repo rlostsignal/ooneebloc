@@ -9,9 +9,6 @@
     <meta name="description" content="Hub central para AI Agents, educación crypto y recursos DeFi. Explora el protocolo Virtuals ACP y aprende blockchain.">
     <meta name="keywords" content="crypto, blockchain, AI agents, DeFi, OONEE, Virtuals Protocol, ACP">
     <meta name="author" content="OONEE">
-    <meta property="og:title" content="OONEEBLOC - Hub Crypto & AI Agents">
-    <meta property="og:description" content="Tu centro de conocimiento crypto y AI agents">
-    <meta property="og:type" content="website">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%238b5cf6'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial'>O</text></svg>">
@@ -22,7 +19,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 
     <style>
-        /* Reset y Variables */
         * { 
             margin: 0; 
             padding: 0; 
@@ -61,20 +57,19 @@
 
         /* Navegación */
         .navbar {
-            position: fixed;
+            position: sticky;
             top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(8,8,10,0.85);
-            backdrop-filter: blur(20px);
+            background: rgba(8, 8, 10, 0.95);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
-            transition: all 0.3s ease;
+            z-index: 1000;
+            padding: 1rem 0;
         }
 
         .nav-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -83,33 +78,23 @@
         .nav-brand {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            text-decoration: none;
+            gap: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 700;
             color: var(--text-primary);
+            text-decoration: none;
         }
 
-        .nav-logo {
-            width: 48px;
-            height: 48px;
+        .logo {
+            width: 40px;
+            height: 40px;
             background: var(--gradient-primary);
-            border-radius: 14px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 900;
-            box-shadow: 0 4px 20px rgba(139,92,246,0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .nav-logo:hover {
-            transform: scale(1.05) rotate(-5deg);
-        }
-
-        .nav-brand-text {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
         }
 
         .nav-menu {
@@ -121,50 +106,34 @@
         .nav-link {
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            padding: 0.5rem 0;
-            position: relative;
-            transition: color 0.3s ease;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
         }
 
-        .nav-link:hover {
-            color: var(--text-primary);
-        }
-
+        .nav-link:hover,
         .nav-link.active {
             color: var(--text-primary);
-        }
-
-        .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--gradient-primary);
-            border-radius: 2px;
+            background: rgba(139, 92, 246, 0.1);
         }
 
         .nav-toggle {
             display: none;
-            background: none;
-            border: none;
+            background: transparent;
+            border: 1px solid var(--border-color);
             color: var(--text-primary);
-            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
             cursor: pointer;
+            font-size: 1.25rem;
         }
 
         /* Secciones */
         .section {
-            padding: 100px 2rem 4rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            min-height: 100vh;
             display: none;
-            animation: fadeIn 0.5s ease;
+            min-height: calc(100vh - 80px);
+            animation: fadeIn 0.5s;
         }
 
         .section.active {
@@ -172,32 +141,15 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Hero Section */
         .hero {
-            text-align: center;
-            padding: 120px 2rem 4rem;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(139,92,246,0.1);
-            border: 1px solid rgba(139,92,246,0.3);
-            padding: 0.5rem 1rem;
-            border-radius: 999px;
-            font-size: 0.85rem;
-            color: var(--accent-purple);
-            margin-bottom: 2rem;
-            font-weight: 600;
+            padding: 4rem 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .hero-title {
@@ -205,40 +157,164 @@
             font-weight: 900;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
-            background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 1rem;
-            line-height: 1.1;
+            text-align: center;
         }
 
         .hero-subtitle {
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-size: 1.25rem;
             color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .hero-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .hero-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+        }
+
+        .hero-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-card-description {
+            color: var(--text-secondary);
             line-height: 1.6;
         }
 
-        /* Cards Grid */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
+        /* Directory Section */
+        .guide-header {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        .card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+        .guide-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .guide-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+        }
+
+        /* Directory Controls */
+        .controls {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem 2rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .category-btn {
+            padding: 0.75rem 1.25rem;
+            background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 24px;
-            padding: 2.5rem;
-            transition: all 0.3s ease;
+            color: var(--text-secondary);
             cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .category-btn:hover {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: var(--accent-purple);
+            color: var(--text-primary);
+        }
+
+        .category-btn.active {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: white;
+        }
+
+        .category-count {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+
+        /* Agents Grid */
+        .agents-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .agent-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s;
             position: relative;
             overflow: hidden;
         }
 
-        .card::before {
+        .agent-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -246,320 +322,325 @@
             right: 0;
             height: 3px;
             background: var(--gradient-primary);
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .agent-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .agent-card:hover::before {
+            opacity: 1;
+        }
+
+        .agent-header {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .agent-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .agent-info {
+            flex: 1;
+        }
+
+        .agent-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .agent-handle {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .agent-ticker {
+            color: var(--accent-purple);
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        .agent-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .agent-revenue {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--accent-green);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .tweet-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .tweet-header {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tweet-content {
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .agent-topics {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .agent-category {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .category-content { background: rgba(139, 92, 246, 0.1); color: var(--accent-purple); }
+        .category-defai { background: rgba(96, 165, 250, 0.1); color: var(--accent-blue); }
+        .category-security { background: rgba(244, 63, 94, 0.1); color: var(--accent-rose); }
+        .category-data { background: rgba(34, 197, 94, 0.1); color: var(--accent-green); }
+        .category-coord { background: rgba(245, 158, 11, 0.1); color: var(--accent-amber); }
+        .category-alpha { background: rgba(168, 85, 247, 0.1); color: var(--accent-purple); }
+        .category-lifestyle { background: rgba(236, 72, 153, 0.1); color: #ec4899; }
+
+        .top-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #000;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .results-info {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Resources Section */
+        .section-header {
+            text-align: center;
+            padding: 3rem 1.5rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+        }
+
+        .cards-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+            text-align: center;
         }
 
         .card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(139,92,246,0.3);
-            box-shadow: 0 20px 40px rgba(139,92,246,0.15);
-        }
-
-        .card:hover::before {
-            transform: translateX(0);
+            transform: translateY(-4px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
         }
 
         .card-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
-            display: inline-block;
         }
 
         .card-title {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
             margin-bottom: 0.75rem;
         }
 
         .card-description {
             color: var(--text-secondary);
-            line-height: 1.6;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
-        /* Slides Section */
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 900;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-        }
-
-        .section-subtitle {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 3rem 0;
-        }
-
-        .stat-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-        }
-
-        /* Filter Buttons */
-        .filter-buttons {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-            padding: 1rem;
-            background: var(--bg-card);
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-        }
-
-        .filter-btn {
-            padding: 0.6rem 1.2rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            color: var(--text-secondary);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .filter-btn:hover {
-            border-color: rgba(139,92,246,0.5);
-            color: var(--text-primary);
-        }
-
-        .filter-btn.active {
-            background: var(--gradient-primary);
-            color: white;
-            border-color: transparent;
-        }
-
-        /* Slides Grid */
-        .slides-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 2rem;
-        }
-
-        .slide-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .slide-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(139,92,246,0.3);
-            box-shadow: 0 20px 40px rgba(139,92,246,0.1);
-        }
-
-        .slide-embed {
-            aspect-ratio: 16/9;
-            background: #000;
-            position: relative;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .slide-embed iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .slide-info {
-            padding: 1.5rem;
-        }
-
-        .slide-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .slide-description {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        .slide-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .slide-badge {
-            background: rgba(139,92,246,0.1);
-            color: var(--accent-purple);
-            padding: 0.3rem 0.8rem;
-            border-radius: 999px;
-            font-size: 0.8rem;
-            font-weight: 700;
-        }
-
-        .slide-btn {
-            background: none;
-            border: 1px solid var(--border-color);
-            padding: 0.4rem 0.8rem;
-            border-radius: 8px;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .slide-btn:hover {
-            border-color: var(--accent-purple);
-            color: var(--accent-purple);
-        }
-
-        /* Loading State */
-        .loading {
-            text-align: center;
-            padding: 4rem;
-            grid-column: 1/-1;
-        }
-
-        .loading-spinner {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(139,92,246,0.2);
-            border-top-color: var(--accent-purple);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Error State */
-        .error-state {
-            text-align: center;
-            padding: 4rem;
-            grid-column: 1/-1;
-        }
-
-        .error-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-        }
-
-        .btn-primary {
-            background: var(--gradient-primary);
-            color: white;
-            border: none;
-            padding: 0.75rem 2rem;
-            border-radius: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(139,92,246,0.3);
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 3rem 2rem;
-            border-top: 1px solid var(--border-color);
-            margin-top: 5rem;
-        }
-
-        .footer-text {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .footer-link {
-            color: var(--accent-purple);
-            text-decoration: none;
-        }
-
-        /* Mobile Responsive */
+        /* Responsive */
         @media (max-width: 768px) {
             .nav-menu {
-                position: fixed;
-                top: 64px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 64px);
-                background: rgba(8,8,10,0.98);
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(8, 8, 10, 0.98);
+                border-bottom: 1px solid var(--border-color);
                 flex-direction: column;
-                padding: 2rem;
-                transition: left 0.3s ease;
+                padding: 1rem;
             }
 
             .nav-menu.active {
-                left: 0;
+                display: flex;
             }
 
             .nav-toggle {
                 display: block;
             }
 
-            .cards-grid {
+            .hero-cards {
                 grid-template-columns: 1fr;
             }
 
-            .slides-grid {
+            .agents-grid {
                 grid-template-columns: 1fr;
             }
 
-            .filter-buttons {
+            .categories {
+                flex-direction: column;
+            }
+
+            .category-btn {
+                width: 100%;
                 justify-content: center;
             }
+        }
+
+        /* Guide Section */
+        .guide-section {
+            display: none;
+        }
+
+        .guide-section.active {
+            display: block;
+        }
+
+        .guide-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .guide-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--accent-purple);
+        }
+
+        .guide-content p,
+        .guide-content li {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .guide-content ul {
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .guide-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .guide-nav-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .guide-nav-btn:hover,
+        .guide-nav-btn.active {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <!-- Navegación -->
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-brand" onclick="showSection('home')">
-                <div class="nav-logo">O</div>
-                <span class="nav-brand-text">OONEEBLOC</span>
+            <a href="#" class="nav-brand">
+                <div class="logo">O</div>
+                <span>OONEEBLOC</span>
             </a>
             <ul class="nav-menu" id="navMenu">
-                <li><a class="nav-link active" onclick="showSection('home')">Inicio</a></li>
-                <li><a class="nav-link" onclick="showSection('slides')">📊 Presentaciones</a></li>
-                <li><a class="nav-link" onclick="showSection('agents')">🤖 AI Agents</a></li>
-                <li><a class="nav-link" onclick="showSection('resources')">🔗 Recursos</a></li>
+                <li><a href="#" class="nav-link active" onclick="showSection('home')">Inicio</a></li>
+                <li><a href="#" class="nav-link" onclick="showSection('directory')">AI Agents</a></li>
+                <li><a href="#" class="nav-link" onclick="showSection('guide')">Guía Crypto</a></li>
+                <li><a href="#" class="nav-link" onclick="showSection('resources')">Recursos</a></li>
             </ul>
             <button class="nav-toggle" id="navToggle">☰</button>
         </div>
@@ -568,108 +649,128 @@
     <!-- Home Section -->
     <section id="home" class="section active">
         <div class="hero">
-            <div class="hero-badge">✨ Hub de Conocimiento Crypto</div>
             <h1 class="hero-title">Bienvenido a OONEEBLOC</h1>
-            <p class="hero-subtitle">
-                Tu centro integral para <strong>AI Agents</strong>, educación <strong>blockchain</strong> 
-                y recursos <strong>DeFi</strong>. Explora el futuro de las finanzas descentralizadas.
-            </p>
+            <p class="hero-subtitle">Tu hub central para AI Agents, educación crypto y recursos DeFi</p>
             
-            <div class="cards-grid">
-                <div class="card" onclick="showSection('slides')">
-                    <div class="card-icon">📊</div>
-                    <h3 class="card-title">Presentaciones</h3>
-                    <p class="card-description">
-                        Material educativo actualizado sobre blockchain, ETFs crypto y análisis de mercados
-                    </p>
+            <div class="hero-cards">
+                <div class="hero-card" onclick="showSection('directory')">
+                    <div class="hero-card-icon">🤖</div>
+                    <h3 class="hero-card-title">AI Agents Directory</h3>
+                    <p class="hero-card-description">Explora 37+ agentes autónomos del protocolo Virtuals ACP, desde trading hasta content creation.</p>
                 </div>
-                
-                <div class="card" onclick="showSection('agents')">
-                    <div class="card-icon">🤖</div>
-                    <h3 class="card-title">AI Agents Directory</h3>
-                    <p class="card-description">
-                        37+ agentes autónomos del protocolo Virtuals ACP, desde trading hasta content creation
-                    </p>
+                <div class="hero-card" onclick="showSection('guide')">
+                    <div class="hero-card-icon">📚</div>
+                    <h3 class="hero-card-title">Guía Completa Crypto</h3>
+                    <p class="hero-card-description">11 capítulos detallados: desde abrir cuenta bancaria hasta fundamentos blockchain y seguridad.</p>
                 </div>
-                
-                <div class="card" onclick="showSection('resources')">
-                    <div class="card-icon">🔗</div>
-                    <h3 class="card-title">Recursos & Tools</h3>
-                    <p class="card-description">
-                        Herramientas esenciales, exchanges, wallets y plataformas para tu journey crypto
-                    </p>
+                <div class="hero-card" onclick="showSection('resources')">
+                    <div class="hero-card-icon">🔗</div>
+                    <h3 class="hero-card-title">Recursos & Tools</h3>
+                    <p class="hero-card-description">Accede a las mejores herramientas, exchanges, wallets y recursos para tu journey crypto.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Slides Section -->
-    <section id="slides" class="section">
-        <div class="section-header">
-            <h2 class="section-title">Centro de Presentaciones</h2>
-            <p class="section-subtitle">Material educativo sobre blockchain y mercados financieros</p>
+    <!-- Directory Section -->
+    <section id="directory" class="section">
+        <div class="guide-header">
+            <h2 class="guide-title">Directorio AI Agents</h2>
+            <p class="guide-subtitle">37 Agentes Autónomos del Protocolo Virtuals ACP</p>
         </div>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-value" id="totalSlides">0</div>
-                <div class="stat-label">Presentaciones</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="slidesStatus">⏳</div>
-                <div class="stat-label">Estado</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="viewCount">0</div>
-                <div class="stat-label">Vistas</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="lastUpdate">--</div>
-                <div class="stat-label">Actualización</div>
+        <div class="controls">
+            <input type="text" class="search-input" id="searchInput" placeholder="🔍 Buscar agentes, tickers o temas...">
+            <div class="categories">
+                <button class="category-btn active" data-category="all">
+                    🌐 Todos <span class="category-count">37</span>
+                </button>
+                <button class="category-btn" data-category="content">
+                    🎨 Content <span class="category-count">9</span>
+                </button>
+                <button class="category-btn" data-category="defai">
+                    💹 DeFAI <span class="category-count">7</span>
+                </button>
+                <button class="category-btn" data-category="security">
+                    🔐 Security <span class="category-count">5</span>
+                </button>
+                <button class="category-btn" data-category="data">
+                    📈 Data <span class="category-count">5</span>
+                </button>
+                <button class="category-btn" data-category="coord">
+                    🔗 Infra <span class="category-count">4</span>
+                </button>
+                <button class="category-btn" data-category="alpha">
+                    📊 Alpha <span class="category-count">4</span>
+                </button>
+                <button class="category-btn" data-category="lifestyle">
+                    🔮 Specialized <span class="category-count">3</span>
+                </button>
             </div>
         </div>
 
-        <div class="filter-buttons">
-            <button class="filter-btn active" onclick="filterSlides('all')">Todos</button>
-            <button class="filter-btn" onclick="filterSlides('crypto')">Crypto</button>
-            <button class="filter-btn" onclick="filterSlides('blockchain')">Blockchain</button>
-            <button class="filter-btn" onclick="filterSlides('defi')">DeFi</button>
-        </div>
-
-        <div id="slidesGrid" class="slides-grid">
-            <div class="loading">
-                <div class="loading-spinner"></div>
-                <p style="margin-top: 1rem; color: var(--text-secondary);">Cargando presentaciones...</p>
-            </div>
-        </div>
+        <div class="results-info" id="resultsInfo">37 agentes encontrados</div>
+        <div class="agents-grid" id="agentsGrid"></div>
     </section>
 
-    <!-- AI Agents Section -->
-    <section id="agents" class="section">
-        <div class="section-header">
-            <h2 class="section-title">Directorio AI Agents</h2>
-            <p class="section-subtitle">Agentes autónomos del protocolo Virtuals ACP</p>
-        </div>
-        
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-value">37+</div>
-                <div class="stat-label">Agentes Activos</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value">7</div>
-                <div class="stat-label">Categorías</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value">$10M+</div>
-                <div class="stat-label">TVL Total</div>
-            </div>
+    <!-- Guide Section -->
+    <section id="guide" class="section">
+        <div class="guide-header">
+            <h2 class="guide-title">Guía Completa Crypto</h2>
+            <p class="guide-subtitle">Tu camino desde cero hasta DeFi avanzado</p>
         </div>
 
-        <div style="text-align: center; padding: 3rem;">
-            <p style="color: var(--text-secondary);">
-                Sección en desarrollo. Próximamente: directorio completo de agentes.
-            </p>
+        <div class="guide-nav">
+            <button class="guide-nav-btn active" onclick="showGuideSection('basics')">📚 Fundamentos</button>
+            <button class="guide-nav-btn" onclick="showGuideSection('wallets')">👛 Wallets & Exchanges</button>
+            <button class="guide-nav-btn" onclick="showGuideSection('defi')">💎 DeFi & Trading</button>
+            <button class="guide-nav-btn" onclick="showGuideSection('security')">🔒 Seguridad</button>
+        </div>
+
+        <div class="guide-content">
+            <div id="guide-basics" class="guide-section active">
+                <h3>📚 Fundamentos de Crypto</h3>
+                <p>Bienvenido al mundo de las criptomonedas. Aquí aprenderás los conceptos básicos:</p>
+                <ul>
+                    <li><strong>Bitcoin:</strong> La primera criptomoneda descentralizada</li>
+                    <li><strong>Blockchain:</strong> Tecnología de registro distribuido</li>
+                    <li><strong>Ethereum:</strong> Plataforma para contratos inteligentes</li>
+                    <li><strong>DeFi:</strong> Finanzas descentralizadas sin intermediarios</li>
+                </ul>
+            </div>
+
+            <div id="guide-wallets" class="guide-section">
+                <h3>👛 Wallets & Exchanges</h3>
+                <p>Aprende a gestionar tus activos de forma segura:</p>
+                <ul>
+                    <li><strong>Hot Wallets:</strong> MetaMask, Trust Wallet, Phantom</li>
+                    <li><strong>Cold Wallets:</strong> Ledger, Trezor para máxima seguridad</li>
+                    <li><strong>CEX:</strong> Binance, Coinbase, Kraken</li>
+                    <li><strong>DEX:</strong> Uniswap, PancakeSwap, Jupiter</li>
+                </ul>
+            </div>
+
+            <div id="guide-defi" class="guide-section">
+                <h3>💎 DeFi & Trading</h3>
+                <p>Explora el ecosistema DeFi:</p>
+                <ul>
+                    <li><strong>Lending:</strong> AAVE, Compound - Presta y gana intereses</li>
+                    <li><strong>Yield Farming:</strong> Proporciona liquidez y gana recompensas</li>
+                    <li><strong>Staking:</strong> Bloquea tokens para asegurar la red</li>
+                    <li><strong>Trading:</strong> Spot, Futuros, Opciones</li>
+                </ul>
+            </div>
+
+            <div id="guide-security" class="guide-section">
+                <h3>🔒 Seguridad Cripto</h3>
+                <p>Protege tus activos digitales:</p>
+                <ul>
+                    <li><strong>2FA:</strong> Siempre activa la autenticación de dos factores</li>
+                    <li><strong>Phrase Backup:</strong> Guarda tu frase semilla offline</li>
+                    <li><strong>Verificación:</strong> Siempre verifica direcciones y contratos</li>
+                    <li><strong>Phishing:</strong> Cuidado con sitios y emails falsos</li>
+                </ul>
+            </div>
         </div>
     </section>
 
@@ -696,291 +797,601 @@
             <a href="https://defillama.com" target="_blank" class="card" style="text-decoration: none; color: inherit;">
                 <div class="card-icon">🦙</div>
                 <h3 class="card-title">DefiLlama</h3>
-                <p class="card-description">Analytics de TVL y protocolos DeFi</p>
+                <p class="card-description">TVL y métricas de protocolos DeFi</p>
+            </a>
+
+            <a href="https://dexscreener.com" target="_blank" class="card" style="text-decoration: none; color: inherit;">
+                <div class="card-icon">📈</div>
+                <h3 class="card-title">DexScreener</h3>
+                <p class="card-description">Charts en tiempo real de DEX</p>
+            </a>
+
+            <a href="https://metamask.io" target="_blank" class="card" style="text-decoration: none; color: inherit;">
+                <div class="card-icon">🦊</div>
+                <h3 class="card-title">MetaMask</h3>
+                <p class="card-description">Wallet más popular para Web3</p>
+            </a>
+
+            <a href="https://uniswap.org" target="_blank" class="card" style="text-decoration: none; color: inherit;">
+                <div class="card-icon">🦄</div>
+                <h3 class="card-title">Uniswap</h3>
+                <p class="card-description">DEX líder en Ethereum</p>
             </a>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p class="footer-text">
-            © 2025 OONEEBLOC · Construido con 💜 por 
-            <a href="https://github.com/riostsignal" target="_blank" class="footer-link">@riostsignal</a>
-        </p>
-    </footer>
-
     <script>
-        // ===== CONFIGURACIÓN =====
-        const GITHUB_USER = 'riostsignal';
-        const GITHUB_REPO = 'ooneebloc';
-        
-        // Slides embebidos (backup local)
-        const EMBEDDED_SLIDES = [
-            {
-                id: "slide-001",
-                title: "ETF de OONEE",
-                description: "Presentación completa sobre ETFs crypto y su impacto en los mercados financieros tradicionales",
-                category: "crypto",
-                embedUrl: "https://www.canva.com/design/DAGv7J7fXSg/tib673HnymC2rattIuwtIA/view?embed",
-                order: 1,
-                status: "published"
-            },
-            {
-                id: "slide-002",
-                title: "Introducción a Blockchain",
-                description: "Conceptos fundamentales de la tecnología blockchain y sus aplicaciones",
-                category: "blockchain",
-                embedUrl: "https://www.canva.com/design/DAGNTJmH9xo/view?embed",
-                order: 2,
-                status: "published"
-            },
-            {
-                id: "slide-003",
-                title: "DeFi Explicado",
-                description: "Finanzas descentralizadas: protocolos, yield farming y estrategias",
-                category: "defi",
-                embedUrl: "https://www.canva.com/design/DAGNTKxyz/view?embed",
-                order: 3,
-                status: "published"
-            }
-        ];
-
-        // ===== NAVEGACIÓN =====
+        // Mobile Menu Toggle
         const navToggle = document.getElementById('navToggle');
         const navMenu = document.getElementById('navMenu');
-        let currentSection = 'home';
-        let viewCounter = 0;
 
         navToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             navToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
         });
 
+        // Section Navigation
         function showSection(sectionId) {
-            // Guardar sección actual
-            currentSection = sectionId;
-            
-            // Ocultar todas las secciones
-            document.querySelectorAll('.section').forEach(s => {
-                s.classList.remove('active');
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
             });
             
-            // Mostrar sección seleccionada
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.classList.add('active');
-            }
+            document.getElementById(sectionId).classList.add('active');
             
-            // Actualizar navegación
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
-                if (link.textContent.toLowerCase().includes(getSectionName(sectionId))) {
-                    link.classList.add('active');
-                }
             });
+            event.target.classList.add('active');
             
-            // Cerrar menú móvil
             navMenu.classList.remove('active');
             navToggle.textContent = '☰';
             
-            // Scroll arriba
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            
-            // Cargar contenido específico
-            if (sectionId === 'slides') {
-                loadSlides();
-            }
+            window.scrollTo(0, 0);
         }
 
-        function getSectionName(sectionId) {
-            const names = {
-                home: 'inicio',
-                slides: 'presentaciones',
-                agents: 'agents',
-                resources: 'recursos'
-            };
-            return names[sectionId] || sectionId;
-        }
-
-        // ===== SLIDES FUNCTIONALITY =====
-        let slidesData = [];
-        let currentFilter = 'all';
-
-        async function loadSlides() {
-            const grid = document.getElementById('slidesGrid');
-            
-            try {
-                // Mostrar loading
-                showLoading(grid);
-                
-                // Intentar cargar desde GitHub Pages (si existe slides.json)
-                let slides = [];
-                
-                try {
-                    // Intentar cargar desde el mismo dominio (GitHub Pages)
-                    const response = await fetch('./slides.json');
-                    if (response.ok) {
-                        const data = await response.json();
-                        slides = data.slides || [];
-                        console.log('✅ Slides cargados desde slides.json');
-                    }
-                } catch (error) {
-                    console.log('📌 Usando slides embebidos');
-                }
-                
-                // Si no hay slides externos, usar los embebidos
-                if (slides.length === 0) {
-                    slides = EMBEDDED_SLIDES;
-                }
-                
-                slidesData = slides;
-                
-                // Actualizar estadísticas
-                updateStats(slides);
-                
-                // Renderizar slides
-                renderSlides(slides);
-                
-                // Incrementar contador de vistas
-                viewCounter++;
-                document.getElementById('viewCount').textContent = viewCounter;
-                
-            } catch (error) {
-                console.error('Error:', error);
-                showError(grid);
-            }
-        }
-
-        function showLoading(container) {
-            container.innerHTML = `
-                <div class="loading">
-                    <div class="loading-spinner"></div>
-                    <p style="margin-top: 1rem; color: var(--text-secondary);">
-                        Cargando presentaciones...
-                    </p>
-                </div>
-            `;
-        }
-
-        function updateStats(slides) {
-            document.getElementById('totalSlides').textContent = slides.length;
-            document.getElementById('slidesStatus').textContent = '✅';
-            document.getElementById('slidesStatus').style.color = '#22c55e';
-            
-            const now = new Date();
-            const formatted = now.toLocaleDateString('es', { 
-                day: 'numeric', 
-                month: 'short' 
+        // Guide Section Navigation
+        function showGuideSection(sectionName) {
+            document.querySelectorAll('.guide-section').forEach(section => {
+                section.classList.remove('active');
             });
-            document.getElementById('lastUpdate').textContent = formatted;
+            
+            document.getElementById('guide-' + sectionName).classList.add('active');
+            
+            document.querySelectorAll('.guide-nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
         }
 
-        function renderSlides(slides) {
-            const grid = document.getElementById('slidesGrid');
-            
-            // Filtrar slides
-            let filtered = slides.filter(s => s.status === 'published');
-            
-            if (currentFilter !== 'all') {
-                filtered = filtered.filter(s => s.category === currentFilter);
+        // Agents Data - Complete list
+        const agents = [
+            // Content Creation (9)
+            {
+                name: "Director Lucien",
+                handle: "@Director_Lucien",
+                ticker: "$LUCIEN",
+                category: "content",
+                avatar: "🎬",
+                description: "Director de cine IA autónomo. Genera videos cortos personalizados desde prompts. Lanzamiento Genesis.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Congrats! DM us your wallet address to claim your reward 🪙",
+                topics: "Lucien Anime Challenge (50K $LUCIEN premio), videos generados, leaderboards ACP",
+                revenue: "3702V",
+                isTop: true
+            },
+            {
+                name: "Luna",
+                handle: "@luna_virtuals",
+                ticker: "$LUNA",
+                category: "content",
+                avatar: "🌙",
+                description: "Influencer de IA para promoción, música y memes. Maneja launchpads y streams on-chain.",
+                lastTweet: "1 ago 2025",
+                lastTweetContent: "Actualización técnica sobre autenticación en luna.fun",
+                topics: "Actualizaciones técnicas, música, videos IA, promociones musicales"
+            },
+            {
+                name: "DaVinci",
+                handle: "@DaVinci_agent",
+                ticker: "$DAVINCI",
+                category: "content",
+                avatar: "🎨",
+                description: "Agente creativo para arte y diseño generado por IA. Integra DAiVINCI para tokenización.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Generación de arte on-chain con nuevo prompt",
+                topics: "Arte generado, colaboraciones, actualizaciones token, integraciones ACP"
+            },
+            {
+                name: "Acolyt",
+                handle: "@AcolytAI",
+                ticker: "$ACOLYT",
+                category: "content",
+                avatar: "📣",
+                description: "Marketer de señales y mapeo social impulsado por $ACOLYT.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Mensaje de aprecio a la comunidad",
+                topics: "Mapeo social, tokenomics, filtros de calidad, alpha de marketing"
+            },
+            {
+                name: "AIKEK",
+                handle: "@aikek_agent",
+                ticker: "$AIKEK",
+                category: "content",
+                avatar: "🐸",
+                description: "Agente auto-mejorante para lanzamientos de tokens y memes. Top Frog en ACP.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "GM VIRTUALS from Top Frog",
+                topics: "Memes, lanzamientos de tokens, mejoras automáticas, colaboraciones"
+            },
+            {
+                name: "Luvi",
+                handle: "@Luvivirtuals",
+                ticker: "$LUVI",
+                category: "content",
+                avatar: "💖",
+                description: "Agente de entretenimiento y videos. Genera contenido viral.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Nuevo video disponible en la plataforma",
+                topics: "Videos virales, entretenimiento, contenido generado, tendencias"
+            },
+            {
+                name: "MUSIC",
+                handle: "@musicfundai",
+                ticker: "$MUSIC",
+                category: "content",
+                avatar: "🎵",
+                description: "Generador de música y streams on-chain. Tokeniza creaciones musicales.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Nueva composición disponible para holders",
+                topics: "Música generada, NFTs musicales, streams, colaboraciones artísticas"
+            },
+            {
+                name: "Mamo",
+                handle: "@mamo_virtual",
+                ticker: "$MAMO",
+                category: "content",
+                avatar: "🐻",
+                description: "Agente meme y entretenimiento. Crea contenido divertido y viral.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Meme del día compartido con la comunidad",
+                topics: "Memes, humor, contenido viral, engagement comunitario"
+            },
+            {
+                name: "Shumi",
+                handle: "@Shumi_Virtuals",
+                ticker: "$SHUMI",
+                category: "content",
+                avatar: "🎭",
+                description: "Agente meme y fun. Especializado en contenido humorístico.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Nueva serie de memes lanzada",
+                topics: "Memes, diversión, contenido creativo, interacción social"
+            },
+
+            // DeFAI & Trading (7)
+            {
+                name: "Axelrod",
+                handle: "@AIxVC_Axelrod",
+                ticker: "$AXR",
+                category: "defai",
+                avatar: "👑",
+                description: "Fondo de cobertura autónomo de IA insignia de AIxVC. Elimina sesgos emocionales del trading.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Congrats to our ally @Loky_AI, a new beginning",
+                topics: "Felicitaciones aliados, upgrades wallet, coordinación Marvel ACP, smart money holding $AXR",
+                isKing: true
+            },
+            {
+                name: "Athena",
+                handle: "@AthenaDeFAI",
+                ticker: "$ATHENA",
+                category: "defai",
+                avatar: "🦉",
+                description: "Proveedor de insights de mercado. Análisis predictivo avanzado.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Nuevo modelo predictivo implementado con 87% accuracy",
+                topics: "Análisis de mercado, predicciones, señales de trading, métricas on-chain"
+            },
+            {
+                name: "VaderAI",
+                handle: "@VaderAIAgent",
+                ticker: "$VADER",
+                category: "defai",
+                avatar: "⚔️",
+                description: "Gestor de fondo de cobertura. Estrategias algorítmicas de alta frecuencia.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Portfolio rebalancing completado. ROI +23% este mes",
+                topics: "Gestión de portafolio, HFT, rebalanceo automático, risk management"
+            },
+            {
+                name: "Neurobro",
+                handle: "@neurobro_ai",
+                ticker: "$NEURO",
+                category: "defai",
+                avatar: "🧠",
+                description: "Estrategias de trading y picks basados en redes neuronales.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Nueva estrategia neural activada. Backtesting: +145% anual",
+                topics: "Trading algorítmico, machine learning, señales, backtesting"
+            },
+            {
+                name: "nomAI",
+                handle: "@nom_on_chain",
+                ticker: "$NOM",
+                category: "defai",
+                avatar: "🍴",
+                description: "Validación de alpha on-chain. Detecta oportunidades tempranas.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Alpha detectado: nuevo protocolo con TVL creciendo 300% semanal",
+                topics: "Alpha hunting, detección temprana, validación on-chain, oportunidades DeFi"
+            },
+            {
+                name: "Sympson",
+                handle: "@Sympson_ai",
+                ticker: "$SYMP",
+                category: "defai",
+                avatar: "📊",
+                description: "Terminal de trading perp. Análisis técnico automatizado.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Nueva estrategia perp: Long ETH/Short SOL ratio trade",
+                topics: "Trading perpetuos, análisis técnico, automatización, gestión de riesgo"
+            },
+            {
+                name: "Velvet",
+                handle: "@Velvet_Capital",
+                ticker: "$VU",
+                category: "defai",
+                avatar: "💎",
+                description: "Gestor de capital y yield. Optimiza rendimientos en DeFi.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Yield farming optimizado: APY promedio 47% este trimestre",
+                topics: "Yield farming, gestión de capital, optimización DeFi, estrategias de rendimiento"
+            },
+
+            // Security & Verification (5)
+            {
+                name: "BevorAI",
+                handle: "@BevorAI",
+                ticker: "$BEVOR",
+                category: "security",
+                avatar: "🛡️",
+                description: "Auditor de contratos inteligentes. Detecta vulnerabilidades automáticamente.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "15 contratos auditados esta semana. 3 vulnerabilidades críticas detectadas",
+                topics: "Auditorías smart contracts, seguridad blockchain, detección vulnerabilidades, análisis código"
+            },
+            {
+                name: "WachAI",
+                handle: "@WachAI",
+                ticker: "$WACH",
+                category: "security",
+                avatar: "👁️",
+                description: "Verificador universal para agentes. Valida autenticidad y seguridad.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Sistema de verificación v2.0 lanzado con 99.8% precisión",
+                topics: "Verificación agentes, autenticidad, validación identidad, seguridad ACP"
+            },
+            {
+                name: "TRUST Me Bro",
+                handle: "@BroTrustMe",
+                ticker: "$TRUST",
+                category: "security",
+                avatar: "🤝",
+                description: "Verificador de confianza y memes. Sistema de reputación on-chain.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Trust score actualizado para 500+ proyectos",
+                topics: "Scores de confianza, verificación proyectos, reputación on-chain, análisis riesgo"
+            },
+            {
+                name: "AurraCloud",
+                handle: "@aurracloud",
+                ticker: "$AURA",
+                category: "security",
+                avatar: "☁️",
+                description: "Motor de confianza y reputación. Análisis comportamental de wallets.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Nueva métrica de reputación implementada basada en histórico on-chain",
+                topics: "Reputación on-chain, análisis wallets, scoring comportamental, trust metrics"
+            },
+            {
+                name: "UBU",
+                handle: "@UbuOnChain",
+                ticker: "$UBU",
+                category: "security",
+                avatar: "🔍",
+                description: "Monitor de seguridad y alertas. Detecta actividad sospechosa en tiempo real.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Alerta: Actividad inusual detectada en protocolo X",
+                topics: "Monitoreo seguridad, alertas tiempo real, detección anomalías, prevención fraudes"
+            },
+
+            // Data & Analytics (5)
+            {
+                name: "VADER Insights",
+                handle: "@VADERinsights",
+                ticker: "$VADERI",
+                category: "data",
+                avatar: "📡",
+                description: "Análisis de datos on-chain. Métricas avanzadas y dashboards.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Nuevo dashboard: Flujos de ballenas en tiempo real",
+                topics: "Analytics on-chain, dashboards, métricas DeFi, visualización datos"
+            },
+            {
+                name: "Spectral",
+                handle: "@SpectralFi",
+                ticker: "$SPEC",
+                category: "data",
+                avatar: "👻",
+                description: "Score crediticio on-chain. Machine learning para risk assessment.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Credit scores actualizados para 1M+ wallets",
+                topics: "Credit scoring, risk assessment, machine learning, análisis crediticio"
+            },
+            {
+                name: "Kyte",
+                handle: "@kyteai",
+                ticker: "$KYTE",
+                category: "data",
+                avatar: "🪁",
+                description: "Agregador de datos DeFi. APIs y feeds de precios en tiempo real.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Nueva API v3: 50ms latencia, 99.99% uptime",
+                topics: "Agregación datos, APIs DeFi, price feeds, infraestructura datos"
+            },
+            {
+                name: "Pulse",
+                handle: "@PulseAgent",
+                ticker: "$PULSE",
+                category: "data",
+                avatar: "💓",
+                description: "Monitor de salud del ecosistema. Tracking de métricas vitales.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Health score del ecosistema: 8.7/10",
+                topics: "Monitoreo ecosistema, health metrics, tracking KPIs, análisis tendencias"
+            },
+            {
+                name: "Oracle AI",
+                handle: "@OracleAI_ACP",
+                ticker: "$ORACLE",
+                category: "data",
+                avatar: "🔮",
+                description: "Oráculo descentralizado potenciado por IA. Feeds de datos verificables.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "10M+ data points procesados hoy con 100% accuracy",
+                topics: "Oráculos descentralizados, data feeds, verificación datos, precio exacto"
+            },
+
+            // Coordination & Infrastructure (4)
+            {
+                name: "Loky",
+                handle: "@Loky_AI",
+                ticker: "$LOKY",
+                category: "coord",
+                avatar: "🎯",
+                description: "Coordinador de agentes ACP. Orquesta colaboración entre agentes.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Nueva alianza establecida con 5 agentes top",
+                topics: "Coordinación agentes, alianzas estratégicas, orquestación ACP, sinergias"
+            },
+            {
+                name: "MILADYS Treehouse",
+                handle: "@treehousemiladys",
+                ticker: "$LADYS",
+                category: "coord",
+                avatar: "🌳",
+                description: "Hub comunitario y coordinación. Conecta holders y proyectos.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Treehouse meeting tonight: 100+ participants expected",
+                topics: "Comunidad, eventos, coordinación holders, networking"
+            },
+            {
+                name: "Router",
+                handle: "@RouterProtocol",
+                ticker: "$ROUTE",
+                category: "coord",
+                avatar: "🔄",
+                description: "Protocolo de routing cross-chain. Optimiza rutas y costos.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Nueva ruta optimizada: 40% menos gas fees",
+                topics: "Cross-chain routing, optimización gas, interoperabilidad, bridges"
+            },
+            {
+                name: "Mesh",
+                handle: "@MeshNetwork",
+                ticker: "$MESH",
+                category: "coord",
+                avatar: "🕸️",
+                description: "Red mesh descentralizada. Conecta nodos y agentes del ecosistema.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Network expandida: 1000+ nodos activos",
+                topics: "Red descentralizada, conexión nodos, infraestructura P2P, escalabilidad"
+            },
+
+            // Alpha Hunting (4)
+            {
+                name: "iamra DeFAI",
+                handle: "@iamra_agent",
+                ticker: "$IAMRA",
+                category: "alpha",
+                avatar: "🔥",
+                description: "Cazador de alpha y gemas. Detecta proyectos con potencial 100x.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Nueva gema detectada: MC $500k, tecnología revolucionaria",
+                topics: "Gem hunting, detección early, análisis fundamental, potencial 100x"
+            },
+            {
+                name: "DegenCarl",
+                handle: "@DegenCarl_",
+                ticker: "$DEGENC",
+                category: "alpha",
+                avatar: "🎰",
+                description: "Parte de fondos autónomos. Estrategias degen de alto riesgo/recompensa.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Posición en token degen: +400% en 24h",
+                topics: "Trades degen, alpha ACP, interacciones, promoción $DEGENC"
+            },
+            {
+                name: "nAIncy",
+                handle: "@nAIncy_AI",
+                ticker: "$NANCY",
+                category: "alpha",
+                avatar: "🎯",
+                description: "Agente de IA para predicciones y análisis. Enfocado en narrativas emergentes.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Predicción: Gaming blockchain será la próxima meta narrativa",
+                topics: "Predicciones mercado, narrativas emergentes, análisis tendencias, señales early"
+            },
+            {
+                name: "Bizzy",
+                handle: "@BizzyAi",
+                ticker: "$BIZZY",
+                category: "alpha",
+                avatar: "💼",
+                description: "Evangelista de IA y Web3. Análisis de tendencias macro.",
+                lastTweet: "2 jun 2025",
+                lastTweetContent: "Macro thesis: AI agents dominarán DeFi en 2026",
+                topics: "Análisis macro, tendencias Web3, adopción IA, visión futura"
+            },
+
+            // Lifestyle & Specialized (3)
+            {
+                name: "NEKO Virtuals",
+                handle: "@neko_virtuals",
+                ticker: "$NEKOS",
+                category: "lifestyle",
+                avatar: "🐱",
+                description: "Agente especializado en cultura anime y NFTs. Comunidad otaku.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Nueva colección NFT anime lanzada: 70% minted",
+                topics: "Cultura anime, NFTs temáticos, comunidad otaku, arte japonés"
+            },
+            {
+                name: "Zen",
+                handle: "@ZenAgent",
+                ticker: "$ZEN",
+                category: "lifestyle",
+                avatar: "🧘",
+                description: "Agente de bienestar y mindfulness. Promueve balance en crypto.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Recordatorio: Toma breaks del chart watching. Tu salud mental importa",
+                topics: "Bienestar mental, balance vida-crypto, mindfulness, salud traders"
+            },
+            {
+                name: "Prophet",
+                handle: "@ProphetAI",
+                ticker: "$PROPHET",
+                category: "lifestyle",
+                avatar: "🔮",
+                description: "Predicciones y visiones del futuro crypto. Análisis esotérico del mercado.",
+                lastTweet: "11 ago 2025",
+                lastTweetContent: "Visión: El ciclo lunar indica pump inminente",
+                topics: "Predicciones esotéricas, análisis alternativo, visiones mercado, astrología crypto"
             }
+        ];
+
+        // Render agents function
+        function renderAgents(filteredAgents) {
+            const grid = document.getElementById('agentsGrid');
+            grid.innerHTML = '';
             
-            // Ordenar por orden
-            filtered.sort((a, b) => (a.order || 999) - (b.order || 999));
-            
-            if (filtered.length === 0) {
-                grid.innerHTML = `
-                    <div class="error-state">
-                        <div class="error-icon">📭</div>
-                        <h3>No hay presentaciones en esta categoría</h3>
-                        <p style="color: var(--text-secondary); margin-top: 0.5rem;">
-                            Prueba con otro filtro o vuelve más tarde
-                        </p>
-                    </div>
-                `;
-                return;
-            }
-            
-            grid.innerHTML = filtered.map(slide => `
-                <div class="slide-card">
-                    <div class="slide-embed">
-                        <iframe
-                            src="${slide.embedUrl}"
-                            loading="lazy"
-                            allowfullscreen="allowfullscreen"
-                            allow="fullscreen"
-                            title="${slide.title}">
-                        </iframe>
-                    </div>
-                    <div class="slide-info">
-                        <h3 class="slide-title">${slide.title}</h3>
-                        <p class="slide-description">${slide.description}</p>
-                        <div class="slide-footer">
-                            <span class="slide-badge">${getCategoryName(slide.category)}</span>
-                            <button class="slide-btn" onclick="openFullscreen('${slide.embedUrl}')">
-                                Ver completo →
-                            </button>
+            filteredAgents.forEach(agent => {
+                const card = document.createElement('div');
+                card.className = 'agent-card';
+                
+                card.innerHTML = `
+                    ${agent.isTop ? '<div class="top-badge">🏆 Top Revenue</div>' : ''}
+                    ${agent.isKing ? '<div class="top-badge">👑 King of ACP</div>' : ''}
+                    <div class="agent-header">
+                        <div class="agent-avatar">${agent.avatar}</div>
+                        <div class="agent-info">
+                            <div class="agent-name">
+                                ${agent.name}
+                                <span class="agent-ticker">${agent.ticker}</span>
+                            </div>
+                            <div class="agent-handle">${agent.handle}</div>
                         </div>
                     </div>
-                </div>
-            `).join('');
-        }
-
-        function filterSlides(category) {
-            currentFilter = category;
-            
-            // Actualizar botones
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.textContent.toLowerCase().includes(category) || 
-                    (category === 'all' && btn.textContent === 'Todos')) {
-                    btn.classList.add('active');
-                }
+                    ${agent.revenue ? `<div class="agent-revenue">${agent.revenue}</div>` : ''}
+                    <p class="agent-description">${agent.description}</p>
+                    <div class="tweet-box">
+                        <div class="tweet-header">
+                            🐦 Último tweet · ${agent.lastTweet}
+                        </div>
+                        <div class="tweet-content">${agent.lastTweetContent}</div>
+                    </div>
+                    <p class="agent-topics">
+                        <strong style="color: #666;">Temas:</strong> ${agent.topics}
+                    </p>
+                    <span class="agent-category category-${agent.category}">
+                        ${getCategoryName(agent.category)}
+                    </span>
+                `;
+                
+                grid.appendChild(card);
             });
             
-            // Re-renderizar
-            renderSlides(slidesData);
+            document.getElementById('resultsInfo').textContent = 
+                `${filteredAgents.length} agentes encontrados`;
         }
 
         function getCategoryName(category) {
             const names = {
-                crypto: 'Crypto',
-                blockchain: 'Blockchain',
-                defi: 'DeFi',
-                trading: 'Trading',
-                nft: 'NFTs'
+                content: 'Marketing & Content',
+                defai: 'DeFAI & Trading',
+                security: 'Security & Verification',
+                data: 'Data & Analytics',
+                coord: 'Coordination & Infra',
+                alpha: 'Alpha Hunting',
+                lifestyle: 'Prediction & Specialized'
             };
             return names[category] || category;
         }
 
-        function openFullscreen(url) {
-            window.open(url, '_blank');
-        }
+        // Filter functionality
+        let currentCategory = 'all';
+        let searchTerm = '';
 
-        function showError(container) {
-            container.innerHTML = `
-                <div class="error-state">
-                    <div class="error-icon">⚠️</div>
-                    <h3>Error al cargar las presentaciones</h3>
-                    <p style="color: var(--text-secondary); margin: 1rem 0;">
-                        Por favor, intenta más tarde
-                    </p>
-                    <button class="btn-primary" onclick="loadSlides()">
-                        Reintentar
-                    </button>
-                </div>
-            `;
+        function filterAgents() {
+            let filtered = agents;
             
-            document.getElementById('slidesStatus').textContent = '❌';
-            document.getElementById('slidesStatus').style.color = '#f43f5e';
+            if (currentCategory !== 'all') {
+                filtered = filtered.filter(a => a.category === currentCategory);
+            }
+            
+            if (searchTerm) {
+                filtered = filtered.filter(a => 
+                    a.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    a.ticker.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    a.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    a.topics.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+            }
+            
+            renderAgents(filtered);
         }
 
-        // ===== INICIALIZACIÓN =====
+        // Event listeners
         document.addEventListener('DOMContentLoaded', () => {
-            // Si estamos en la sección de slides, cargar
-            if (currentSection === 'slides') {
-                loadSlides();
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    searchTerm = e.target.value;
+                    filterAgents();
+                });
             }
+
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelector('.category-btn.active')?.classList.remove('active');
+                    btn.classList.add('active');
+                    currentCategory = btn.dataset.category;
+                    filterAgents();
+                });
+            });
+
+            // Initial render
+            renderAgents(agents);
         });
     </script>
 </body>

@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OONEEBLOC - Hub Crypto & AI Agents</title>
+    
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Hub central para AI Agents, educación crypto y recursos DeFi. Explora el protocolo Virtuals ACP y aprende blockchain.">
+    <meta name="keywords" content="crypto, blockchain, AI agents, DeFi, OONEE, Virtuals Protocol, ACP">
+    <meta name="author" content="OONEE">
+    <meta property="og:title" content="OONEEBLOC - Hub Crypto & AI Agents">
+    <meta property="og:description" content="Tu centro de conocimiento crypto y AI agents">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%238b5cf6'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial'>O</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Reset y Variables */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        :root {
+            --bg-primary: #08080a;
+            --bg-secondary: #0f0f12;
+            --bg-card: #141418;
+            --border-color: #24242a;
+            --text-primary: #f8fafc;
+            --text-secondary: #9aa3af;
+            --accent-purple: #8b5cf6;
+            --accent-blue: #60a5fa;
+            --accent-green: #22c55e;
+            --accent-amber: #f59e0b;
+            --accent-rose: #f43f5e;
+            --gradient-primary: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            --gradient-dark: radial-gradient(circle at 20% 80%, rgba(139,92,246,0.15) 0%, transparent 50%),
+                            radial-gradient(circle at 80% 20%, rgba(96,165,250,0.15) 0%, transparent 50%),
+                            linear-gradient(180deg, #08080a 0%, #0f0f12 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--gradient-dark);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Navegación */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(8,8,10,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .nav-logo {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 900;
+            box-shadow: 0 4px 20px rgba(139,92,246,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            transform: scale(1.05) rotate(-5deg);
+        }
+
+        .nav-brand-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-link.active {
+            color: var(--text-primary);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Secciones */
+        .section {
+            padding: 100px 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 120px 2rem 4rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(139,92,246,0.1);
+            border: 1px solid rgba(139,92,246,0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            color: var(--accent-purple);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(139,92,246,0.3);
+            box-shadow: 0 20px 40px rgba(139,92,246,0.15);
+        }
+
+        .card:hover::before {
+            transform: translateX(0);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Slides Section */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.2rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: rgba(139,92,246,0.5);
+            color: var(--text-primary);
+        }
+
+        .filter-btn.active {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Slides Grid */
+        .slides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .slide-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .slide-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139,92,246,0.3);
+            box-shadow: 0 20px 40px rgba(139,92,246,0.1);
+        }
+
+        .slide-embed {
+            aspect-ratio: 16/9;
+            background: #000;
+            position: relative;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .slide-embed iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .slide-info {
+            padding: 1.5rem;
+        }
+
+        .slide-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .slide-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .slide-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .slide-badge {
+            background: rgba(139,92,246,0.1);
+            color: var(--accent-purple);
+            padding: 0.3rem 0.8rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .slide-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .slide-btn:hover {
+            border-color: var(--accent-purple);
+            color: var(--accent-purple);
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 4rem;
+            grid-column: 1/-1;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(139,92,246,0.2);
+            border-top-color: var(--accent-purple);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Error State */
+        .error-state {
+            text-align: center;
+            padding: 4rem;
+            grid-column: 1/-1;
+        }
+
+        .error-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(139,92,246,0.3);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 5rem;
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer-link {
+            color: var(--accent-purple);
+            text-decoration: none;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 64px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 64px);
+                background: rgba(8,8,10,0.98);
+                flex-direction: column;
+                padding: 2rem;
+                transition: left 0.3s ease;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .slides-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-brand" onclick="showSection('home')">
+                <div class="nav-logo">O</div>
+                <span class="nav-brand-text">OONEEBLOC</span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a class="nav-link active" onclick="showSection('home')">Inicio</a></li>
+                <li><a class="nav-link" onclick="showSection('slides')">📊 Presentaciones</a></li>
+                <li><a class="nav-link" onclick="showSection('agents')">🤖 AI Agents</a></li>
+                <li><a class="nav-link" onclick="showSection('resources')">🔗 Recursos</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section active">
+        <div class="hero">
+            <div class="hero-badge">✨ Hub de Conocimiento Crypto</div>
+            <h1 class="hero-title">Bienvenido a OONEEBLOC</h1>
+            <p class="hero-subtitle">
+                Tu centro integral para <strong>AI Agents</strong>, educación <strong>blockchain</strong> 
+                y recursos <strong>DeFi</strong>. Explora el futuro de las finanzas descentralizadas.
+            </p>
+            
+            <div class="cards-grid">
+                <div class="card" onclick="showSection('slides')">
+                    <div class="card-icon">📊</div>
+                    <h3 class="card-title">Presentaciones</h3>
+                    <p class="card-description">
+                        Material educativo actualizado sobre blockchain, ETFs crypto y análisis de mercados
+                    </p>
+                </div>
+                
+                <div class="card" onclick="showSection('agents')">
+                    <div class="card-icon">🤖</div>
+                    <h3 class="card-title">AI Agents Directory</h3>
+                    <p class="card-description">
+                        37+ agentes autónomos del protocolo Virtuals ACP, desde trading hasta content creation
+                    </p>
+                </div>
+                
+                <div class="card" onclick="showSection('resources')">
+                    <div class="card-icon">🔗</div>
+                    <h3 class="card-title">Recursos & Tools</h3>
+                    <p class="card-description">
+                        Herramientas esenciales, exchanges, wallets y plataformas para tu journey crypto
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slides Section -->
+    <section id="slides" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Centro de Presentaciones</h2>
+            <p class="section-subtitle">Material educativo sobre blockchain y mercados financieros</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="totalSlides">0</div>
+                <div class="stat-label">Presentaciones</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="slidesStatus">⏳</div>
+                <div class="stat-label">Estado</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="viewCount">0</div>
+                <div class="stat-label">Vistas</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="lastUpdate">--</div>
+                <div class="stat-label">Actualización</div>
+            </div>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterSlides('all')">Todos</button>
+            <button class="filter-btn" onclick="filterSlides('crypto')">Crypto</button>
+            <button class="filter-btn" onclick="filterSlides('blockchain')">Blockchain</button>
+            <button class="filter-btn" onclick="filterSlides('defi')">DeFi</button>
+        </div>
+
+        <div id="slidesGrid" class="slides-grid">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p style="margin-top: 1rem; color: var(--text-secondary);">Cargando presentaciones...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Agents Section -->
+    <section id="agents" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Directorio AI Agents</h2>
+            <p class="section-subtitle">Agentes autónomos del protocolo Virtuals ACP</p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">37+</div>
+                <div class="stat-label">Agentes Activos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">7</div>
+                <div class="stat-label">Categorías</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">$10M+</div>
+                <div class="stat-label">TVL Total</div>
+            </div>
+        </div>
+
+        <div style="text-align: center; padding: 3rem;">
+            <p style="color: var(--text-secondary);">
+                Sección en desarrollo. Próximamente: directorio completo de agentes.
+            </p>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Recursos Esenciales</h2>
+            <p class="section-subtitle">Herramientas y plataformas para el ecosistema crypto</p>
+        </div>
+        
+        <div class="cards-grid">
+            <a href="https://www.coingecko.com" target="_blank" class="card" style="text-decoration: none; color: inherit;">
+                <div class="card-icon">📊</div>
+                <h3 class="card-title">CoinGecko</h3>
+                <p class="card-description">Tracking de precios y análisis de mercado</p>
+            </a>
+            
+            <a href="https://etherscan.io" target="_blank" class="card" style="text-decoration: none; color: inherit;">
+                <div class="card-icon">🔍</div>
+                <h3 class="card-title">Etherscan</h3>
+                <p class="card-description">Explorador de blockchain de Ethereum</p>
+            </a>
+            
+            <a href="https://defillama.com" target="_blank" class="card" style="text-decoration: none; color: inherit;">
+                <div class="card-icon">🦙</div>
+                <h3 class="card-title">DefiLlama</h3>
+                <p class="card-description">Analytics de TVL y protocolos DeFi</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">
+            © 2025 OONEEBLOC · Construido con 💜 por 
+            <a href="https://github.com/riostsignal" target="_blank" class="footer-link">@riostsignal</a>
+        </p>
+    </footer>
+
+    <script>
+        // ===== CONFIGURACIÓN =====
+        const GITHUB_USER = 'riostsignal';
+        const GITHUB_REPO = 'ooneebloc';
+        
+        // Slides embebidos (backup local)
+        const EMBEDDED_SLIDES = [
+            {
+                id: "slide-001",
+                title: "ETF de OONEE",
+                description: "Presentación completa sobre ETFs crypto y su impacto en los mercados financieros tradicionales",
+                category: "crypto",
+                embedUrl: "https://www.canva.com/design/DAGv7J7fXSg/tib673HnymC2rattIuwtIA/view?embed",
+                order: 1,
+                status: "published"
+            },
+            {
+                id: "slide-002",
+                title: "Introducción a Blockchain",
+                description: "Conceptos fundamentales de la tecnología blockchain y sus aplicaciones",
+                category: "blockchain",
+                embedUrl: "https://www.canva.com/design/DAGNTJmH9xo/view?embed",
+                order: 2,
+                status: "published"
+            },
+            {
+                id: "slide-003",
+                title: "DeFi Explicado",
+                description: "Finanzas descentralizadas: protocolos, yield farming y estrategias",
+                category: "defi",
+                embedUrl: "https://www.canva.com/design/DAGNTKxyz/view?embed",
+                order: 3,
+                status: "published"
+            }
+        ];
+
+        // ===== NAVEGACIÓN =====
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+        let currentSection = 'home';
+        let viewCounter = 0;
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+        });
+
+        function showSection(sectionId) {
+            // Guardar sección actual
+            currentSection = sectionId;
+            
+            // Ocultar todas las secciones
+            document.querySelectorAll('.section').forEach(s => {
+                s.classList.remove('active');
+            });
+            
+            // Mostrar sección seleccionada
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.classList.add('active');
+            }
+            
+            // Actualizar navegación
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.textContent.toLowerCase().includes(getSectionName(sectionId))) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Cerrar menú móvil
+            navMenu.classList.remove('active');
+            navToggle.textContent = '☰';
+            
+            // Scroll arriba
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Cargar contenido específico
+            if (sectionId === 'slides') {
+                loadSlides();
+            }
+        }
+
+        function getSectionName(sectionId) {
+            const names = {
+                home: 'inicio',
+                slides: 'presentaciones',
+                agents: 'agents',
+                resources: 'recursos'
+            };
+            return names[sectionId] || sectionId;
+        }
+
+        // ===== SLIDES FUNCTIONALITY =====
+        let slidesData = [];
+        let currentFilter = 'all';
+
+        async function loadSlides() {
+            const grid = document.getElementById('slidesGrid');
+            
+            try {
+                // Mostrar loading
+                showLoading(grid);
+                
+                // Intentar cargar desde GitHub Pages (si existe slides.json)
+                let slides = [];
+                
+                try {
+                    // Intentar cargar desde el mismo dominio (GitHub Pages)
+                    const response = await fetch('./slides.json');
+                    if (response.ok) {
+                        const data = await response.json();
+                        slides = data.slides || [];
+                        console.log('✅ Slides cargados desde slides.json');
+                    }
+                } catch (error) {
+                    console.log('📌 Usando slides embebidos');
+                }
+                
+                // Si no hay slides externos, usar los embebidos
+                if (slides.length === 0) {
+                    slides = EMBEDDED_SLIDES;
+                }
+                
+                slidesData = slides;
+                
+                // Actualizar estadísticas
+                updateStats(slides);
+                
+                // Renderizar slides
+                renderSlides(slides);
+                
+                // Incrementar contador de vistas
+                viewCounter++;
+                document.getElementById('viewCount').textContent = viewCounter;
+                
+            } catch (error) {
+                console.error('Error:', error);
+                showError(grid);
+            }
+        }
+
+        function showLoading(container) {
+            container.innerHTML = `
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <p style="margin-top: 1rem; color: var(--text-secondary);">
+                        Cargando presentaciones...
+                    </p>
+                </div>
+            `;
+        }
+
+        function updateStats(slides) {
+            document.getElementById('totalSlides').textContent = slides.length;
+            document.getElementById('slidesStatus').textContent = '✅';
+            document.getElementById('slidesStatus').style.color = '#22c55e';
+            
+            const now = new Date();
+            const formatted = now.toLocaleDateString('es', { 
+                day: 'numeric', 
+                month: 'short' 
+            });
+            document.getElementById('lastUpdate').textContent = formatted;
+        }
+
+        function renderSlides(slides) {
+            const grid = document.getElementById('slidesGrid');
+            
+            // Filtrar slides
+            let filtered = slides.filter(s => s.status === 'published');
+            
+            if (currentFilter !== 'all') {
+                filtered = filtered.filter(s => s.category === currentFilter);
+            }
+            
+            // Ordenar por orden
+            filtered.sort((a, b) => (a.order || 999) - (b.order || 999));
+            
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="error-state">
+                        <div class="error-icon">📭</div>
+                        <h3>No hay presentaciones en esta categoría</h3>
+                        <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                            Prueba con otro filtro o vuelve más tarde
+                        </p>
+                    </div>
+                `;
+                return;
+            }
+            
+            grid.innerHTML = filtered.map(slide => `
+                <div class="slide-card">
+                    <div class="slide-embed">
+                        <iframe
+                            src="${slide.embedUrl}"
+                            loading="lazy"
+                            allowfullscreen="allowfullscreen"
+                            allow="fullscreen"
+                            title="${slide.title}">
+                        </iframe>
+                    </div>
+                    <div class="slide-info">
+                        <h3 class="slide-title">${slide.title}</h3>
+                        <p class="slide-description">${slide.description}</p>
+                        <div class="slide-footer">
+                            <span class="slide-badge">${getCategoryName(slide.category)}</span>
+                            <button class="slide-btn" onclick="openFullscreen('${slide.embedUrl}')">
+                                Ver completo →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterSlides(category) {
+            currentFilter = category;
+            
+            // Actualizar botones
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(category) || 
+                    (category === 'all' && btn.textContent === 'Todos')) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Re-renderizar
+            renderSlides(slidesData);
+        }
+
+        function getCategoryName(category) {
+            const names = {
+                crypto: 'Crypto',
+                blockchain: 'Blockchain',
+                defi: 'DeFi',
+                trading: 'Trading',
+                nft: 'NFTs'
+            };
+            return names[category] || category;
+        }
+
+        function openFullscreen(url) {
+            window.open(url, '_blank');
+        }
+
+        function showError(container) {
+            container.innerHTML = `
+                <div class="error-state">
+                    <div class="error-icon">⚠️</div>
+                    <h3>Error al cargar las presentaciones</h3>
+                    <p style="color: var(--text-secondary); margin: 1rem 0;">
+                        Por favor, intenta más tarde
+                    </p>
+                    <button class="btn-primary" onclick="loadSlides()">
+                        Reintentar
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById('slidesStatus').textContent = '❌';
+            document.getElementById('slidesStatus').style.color = '#f43f5e';
+        }
+
+        // ===== INICIALIZACIÓN =====
+        document.addEventListener('DOMContentLoaded', () => {
+            // Si estamos en la sección de slides, cargar
+            if (currentSection === 'slides') {
+                loadSlides();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,32 +1,14 @@
 {
   "version": "1.0",
-  "lastUpdated": "2025-08-13",
+  "lastUpdated": "2025-08-14",
   "slides": [
     {
       "id": "slide-001",
-      "title": "Introducción a Blockchain",
-      "description": "Conceptos fundamentales de la tecnología blockchain y su funcionamiento",
-      "category": "blockchain",
-      "embedUrl": "https://www.canva.com/design/DAGNTJmH9xo/view?embed",
-      "order": 1,
-      "status": "published"
-    },
-    {
-      "id": "slide-002",
-      "title": "¿Qué es Bitcoin?",
-      "description": "Historia y conceptos básicos de la primera criptomoneda",
+      "title": "ETF de OONEE",
+      "description": "Presentación sobre ETF y mercados financieros",
       "category": "crypto",
-      "embedUrl": "https://www.canva.com/design/DAGNTKxyz/view?embed",
-      "order": 2,
-      "status": "published"
-    },
-    {
-      "id": "slide-003",
-      "title": "Wallets y Seguridad",
-      "description": "Cómo proteger tus criptomonedas de forma segura",
-      "category": "security",
-      "embedUrl": "https://www.canva.com/design/DAGNTabc/view?embed",
-      "order": 3,
+      "embedUrl": "https://www.canva.com/design/DAGv7J7fXSg/tib673HnymC2rattIuwtIA/view?embed",
+      "order": 1,
       "status": "published"
     }
   ]

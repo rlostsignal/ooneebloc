@@ -821,26 +821,75 @@
             line-height: 1.5;
         }
 
-        /* Slides Section */
-        #slidesGrid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .slide-card {
-            background: linear-gradient(135deg, rgba(20, 20, 24, 0.9), rgba(15, 15, 18, 0.9));
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: var(--radius-xl);
+        /* Slides Section Specific Styles */
+        .presentation-card {
+            background: #141418;
+            border: 1px solid #24242a;
+            border-radius: 20px;
             overflow: hidden;
-            transition: all 0.3s ease;
+            margin-bottom: 2rem;
         }
-
-        .slide-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
-            border-color: rgba(139, 92, 246, 0.3);
+        .presentation-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(96, 165, 250, 0.1));
+            border-bottom: 1px solid #24242a;
+        }
+        .presentation-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .presentation-description {
+            color: #9aa3af;
+        }
+        .canva-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+        }
+        .canva-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .presentation-footer {
+            padding: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #8b5cf6, #60a5fa);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #8b5cf6;
+        }
+        .status {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+            border-radius: 10px;
+            margin-bottom: 2rem;
         }
 
         /* Icon styles */
@@ -1290,24 +1339,57 @@
 
     <!-- Slides/Canva Section -->
     <section id="slides" class="section">
-        <div class="guide-header">
-            <h2 class="guide-title">Centro de Presentaciones Canva</h2>
-            <p class="guide-subtitle">Material educativo visual sobre blockchain y criptomonedas</p>
-        </div>
-
-        <div id="slidesGrid">
-            <div style="text-align:center; padding: 3rem; color: var(--text-secondary);">
-                <div style="font-size: 3rem;">📊</div>
-                <p style="margin-top: 1rem;">Cargando presentaciones desde GitHub...</p>
+        <div class="container">
+            <h1>Centro de Presentaciones Canva</h1>
+            <p class="subtitle">Material educativo sobre blockchain y criptomonedas</p>
+    
+            <div class="status">
+                ✅ Presentación cargada correctamente - URL verificada y funcionando
+            </div>
+    
+            <!-- Tu presentación ETF de OONEE -->
+            <div class="presentation-card">
+                <div class="presentation-header">
+                    <h2 class="presentation-title">ETF de OONEE</h2>
+                    <p class="presentation-description">Presentación sobre ETF y mercados financieros</p>
+                </div>
+                
+                <div class="canva-container">
+                    <iframe 
+                        src="https://www.canva.com/design/DAGv7J7fXSg/tib673HnymC2rattIuwtIA/view?embed"
+                        allowfullscreen="allowfullscreen"
+                        allow="fullscreen">
+                    </iframe>
+                </div>
+                
+                <div class="presentation-footer">
+                    <a href="https://www.canva.com/design/DAGv7J7fXSg/tib673HnymC2rattIuwtIA/view" 
+                       target="_blank" 
+                       class="btn">
+                        Ver en Pantalla Completa
+                    </a>
+                    <button class="btn btn-secondary" id="shareButton">
+                        Compartir
+                    </button>
+                </div>
+            </div>
+    
+            <!-- Espacio para más presentaciones -->
+            <div class="presentation-card">
+                <div class="presentation-header">
+                    <h2 class="presentation-title">Próximamente: Introducción a Blockchain</h2>
+                    <p class="presentation-description">Conceptos fundamentales de la tecnología blockchain</p>
+                </div>
+                <div style="padding: 4rem; text-align: center; color: #9aa3af;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🚧</div>
+                    <p>Esta presentación estará disponible pronto</p>
+                </div>
             </div>
         </div>
     </section>
 
     <script>
         // --- DATA ---
-        const GITHUB_SLIDES_URL = 'https://raw.githubusercontent.com/riostsignal/ooneebloc-data/main/slides.json';
-        let slidesData = null;
-        
         const agents = [
             // Content (9 agentes)
             {name:"Director Lucien", handle:"@Director_Lucien", ticker:"$LUCIEN", category:"content", avatar:"🎬", description:"Director de cine IA autónomo. Genera videos cortos personalizados.", revenue:"3702V"},
@@ -1373,11 +1455,11 @@
                 }
             });
             
+            const navMenu = document.getElementById('navMenu');
+            const navToggle = document.getElementById('navToggle');
             navMenu.classList.remove('active');
             navToggle.textContent = '☰';
             window.scrollTo({top: 0, behavior: 'smooth'});
-            
-            if(sectionId === 'slides' && !slidesData) loadSlidesFromGitHub();
         }
 
         function showGuideSection(sectionName) {
@@ -1442,41 +1524,50 @@
             
             renderAgents(filtered);
         }
+        
+        // --- SHARE FUNCTIONALITY ---
+        function compartir() {
+            const url = 'https://www.canva.com/design/DAGv7J7fXSg/tib673HnymC2rattIuwtIA/view';
+            const shareData = {
+                title: 'ETF de OONEE',
+                text: 'Mira esta presentación sobre ETF y mercados financieros',
+                url: url
+            };
 
-        // --- SLIDES SECTION ---
-        async function loadSlidesFromGitHub(){
-            const grid = document.getElementById('slidesGrid');
-            if(!grid) return;
-
-            try{
-                grid.innerHTML = `<div style="text-align:center; padding: 2.5rem; grid-column: 1/-1;"><div class="loading-spinner" style="font-size:2.4rem;">⏳</div><p style="color: var(--text-secondary); margin-top:.75rem;">Cargando presentaciones...</p></div>`;
-                const response = await fetch(GITHUB_SLIDES_URL + '?t=' + Date.now(), { cache:'no-store' });
-                if(!response.ok) throw new Error('Error al cargar slides: ' + response.status);
-                
-                const data = await response.json();
-                slidesData = data;
-                renderSlides(data.slides);
-            } catch(error){
-                console.error('Error cargando slides:', error);
-                grid.innerHTML = `<p>Error al cargar presentaciones.</p>`;
+            if (navigator.share) {
+                navigator.share(shareData).catch(console.error);
+            } else {
+                // Fallback for browsers that don't support navigator.share
+                const textArea = document.createElement('textarea');
+                textArea.value = url;
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    // Create a temporary notification
+                    const notification = document.createElement('div');
+                    notification.textContent = '¡Enlace copiado al portapapeles!';
+                    notification.style.position = 'fixed';
+                    notification.style.bottom = '20px';
+                    notification.style.left = '50%';
+                    notification.style.transform = 'translateX(-50%)';
+                    notification.style.background = 'var(--gradient-primary)';
+                    notification.style.color = 'white';
+                    notification.style.padding = '10px 20px';
+                    notification.style.borderRadius = '8px';
+                    notification.style.zIndex = '1001';
+                    document.body.appendChild(notification);
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 3000);
+                } catch (err) {
+                    console.error('Fallback: Oops, unable to copy', err);
+                }
+                document.body.removeChild(textArea);
             }
         }
 
-        function renderSlides(slides){
-            const grid = document.getElementById('slidesGrid');
-            if(!grid) return;
-            grid.innerHTML = slides.map(slide => `
-                <div class="slide-card">
-                    <div style="aspect-ratio: 16/9; background: var(--bg-secondary);">
-                        <iframe src="${slide.embedUrl}" loading="lazy" allowfullscreen="allowfullscreen" style="width:100%; height:100%; border:none;"></iframe>
-                    </div>
-                    <div style="padding: 1rem;">
-                        <h3>${slide.title}</h3>
-                        <p style="color: var(--text-secondary);">${slide.description}</p>
-                    </div>
-                </div>
-            `).join('');
-        }
 
         // --- INITIALIZE ---
         document.addEventListener('DOMContentLoaded', () => {
@@ -1516,6 +1607,11 @@
             document.querySelectorAll('#guideNav .guide-nav-btn').forEach(btn => {
                 btn.addEventListener('click', () => showGuideSection(btn.dataset.guide));
             });
+            
+            const shareButton = document.getElementById('shareButton');
+            if(shareButton) {
+                shareButton.addEventListener('click', compartir);
+            }
             
             renderAgents(agents);
             console.log('OONEEBLOC Premium Loaded ✨');
